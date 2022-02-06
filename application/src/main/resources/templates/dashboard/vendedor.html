@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>  
+
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+   
+    <div class="app-body">
+
+	  <!-- Side Bar -->
+	  <th:block th:include="/includes/_sidebar"></th:block>
+	        
+      <main class="main">
+      
+        <!-- Include Header -->
+    	<th:block th:include="/dashboard/_header"></th:block>
+
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+          	<div class="row">
+				<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-digitadas"></th:block> 
+	       		</div>
+	       		<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-portabilidade"></th:block> 
+				</div>
+				<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-recusadas"></th:block> 
+	          	</div>
+			</div>
+			<div class="row">
+				<div class="card-columns cols-2">
+    	          <th:block th:include="/dashboard/metas"></th:block> 
+        	      <th:block th:include="/dashboard/notificacoes"></th:block> 
+	            </div>
+    		</div>
+          </div>
+        </div>
+      </main>
+
+    </div>
+ 
+   	<th:block th:include="/includes/_footer"></th:block>
+   	
+   	<script>
+   		$(document).ready(function(){
+   			
+			var usuario = $("#user").val();
+			var inicio 	= $('#dashboardDatInicial').val();
+			var fim 	= $('#dashboardDatFinal').val();
+			
+			_dashboard.metas(usuario, inicio, fim);
+	   		_dashboard.propostasDigitadasUsuario(usuario, inicio, fim);
+	   		_dashboard.propostasPortabilidadeUsuario(usuario, inicio, fim);
+	   		_dashboard.propostasRecusadasUsuario(usuario, inicio, fim);
+  			_dashboard.propostasPortabilidadeUsuario(usuario, inicio, fim);
+  			_dashboard.notificacoes();
+  				
+   			$('.btn-dashboard').click(function(){
+   				inicio 	= $('#dashboardDatInicial').val();
+   				fim 	= $('#dashboardDatFinal').val();
+   				
+   			     $.preloader.start({
+   		             modal: true,
+   		             src : 'sprites2.png'
+   		         });
+   			     
+   			    setTimeout(function(){
+   				 	_dashboard.metas(usuario, inicio, fim);
+   		   			_dashboard.propostasDigitadasUsuario(usuario, inicio, fim);
+   		   			_dashboard.propostasPortabilidadeUsuario(usuario, inicio, fim);
+	   	   			_dashboard.propostasRecusadasUsuario(usuario, inicio, fim);
+   	   				_dashboard.propostasPortabilidadeUsuario(usuario, inicio, fim);
+   	   				_dashboard.notificacoes();
+   	   			
+   		   			$.preloader.stop();
+
+   		    	 }, 1000);
+   			});
+   		});
+   	</script>
+   	
+  </body>
+</html>

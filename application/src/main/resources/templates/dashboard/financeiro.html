@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>  
+
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+   
+    <div class="app-body">
+
+	  <!-- Side Bar -->
+	  <th:block th:include="/includes/_sidebar"></th:block>
+	        
+      <main class="main">
+      
+       	<!-- Include Header -->
+    	<th:block th:include="/dashboard/_header"></th:block> 
+
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+			<div class="row">
+				<div class="col-lg-12">
+    	          <th:block th:include="/dashboard/metas-franqueado.html"></th:block> 
+		        </div>
+    		</div>
+    		<div class="row">
+    			<div class="col-lg-12">
+    				<th:block th:include="/dashboard/vendas-dias.html"></th:block> 
+    			</div>
+    		</div>
+    		<div class="row">
+				<div class="col-lg-12">
+    	    	      <th:block th:include="/dashboard/funil.html"></th:block> 
+				</div>
+    		</div>
+    		<div class="row">
+    			<div class="col-lg-12">
+    				<th:block th:include="/dashboard/ticket-medio.html"></th:block> 
+    			</div>
+    		</div>
+          </div>
+        </div>
+      </main>
+    </div>
+ 
+   	<th:block th:include="/includes/_footer"></th:block>
+   	
+   	<script>
+   		$(document).ready(function(){
+   			
+   			var usuario = $("#user").val();
+			var inicio 	= $('#dashboardDatInicial').val();
+			var fim 	= $('#dashboardDatFinal').val();
+			var unidade	= $('#dashboardUnidade option:selected').val();
+
+   			_dashboard.propostasVendedor();
+   			_dashboard.metasUsuarios(unidade, null, null);
+   			_dashboard.ranking('financeiro');
+   			_dashboard.funil();
+   			_dashboard.vendasDias();
+   			_dashboard.ticketMedio();
+	   			
+		    $('.progress-value > span').each(function(){
+		        $(this).prop('Counter',0).animate({
+		            Counter: $(this).text()
+		        },{
+		            duration: 2000,
+		            easing: 'swing',
+		            step: function (now){
+		                $(this).text(Math.ceil(now));
+		            }
+		        });
+		    });
+
+		    $('.btn-dashboard').click(function(){
+		    	inicio 	= $('#dashboardDatInicial').val();
+				fim 	= $('#dashboardDatFinal').val();
+				unidade	= $('#dashboardUnidade option:selected').val();
+
+				
+		    	$.preloader.start({
+		             modal: true,
+		             src : 'sprites2.png'
+		         });
+			     
+			    setTimeout(function(){
+			    	_dashboard.propostasVendedor();
+		   			_dashboard.metasUsuarios(unidade, inicio, fim);
+		   			_dashboard.ranking('financeiro');
+		   			_dashboard.funil(inicio, fim);
+		   			_dashboard.vendasDias(inicio, fim);
+		   			_dashboard.ticketMedio(inicio, fim);
+		   			
+		   			$.preloader.stop();
+		    	 }, 1000);
+			});
+		    
+   		});
+   	</script>
+   	
+  </body>
+</html>

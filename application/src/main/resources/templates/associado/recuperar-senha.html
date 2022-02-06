@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>  
+    <body class="app flex-row align-items-center">
+    <div class="container">
+		<form name="formRecuperarSenha" th:action="@{/usuario/recuperacao-senha}">
+	      <div class="row justify-content-center">
+	        <div class="col-md-6">
+		       <div id="callBackRecuperarSenha" class="alert alert-success alert-white rounded">
+			       <span></span>
+		    	</div>
+		    	<br/>
+	          	<div class="clearfix">
+	            	<h4 class="pt-3">Sistema Ninho</h4>
+	            	<p class="text-muted">Recuperação de senha</p>
+		      	</div>
+	          	<div class="input-prepend input-group">
+	            	<input class="form-control" id="loginRecuperarSenha" size="16" type="text" name="login" placeholder="Informe seu email ou login">
+	            	<span class="input-group-append">
+	              		<button class="btn btn-primary btn-sm" type="button" id="btnRecuperarSenha">ENVIAR</button>
+	           		</span>
+	           </div>
+	           	<br/>
+	           	<a th:href="@{/}" class="btn btn-primary btn-sm">VOLTAR</a>
+	          	
+	        </div>
+	      </div>
+      	</form>
+    </div>         
+  	<!-- Include Libs -->
+	<th:block th:include="/includes/_footerlibs"></th:block>  
+  
+  </body>
+</html>

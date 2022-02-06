@@ -1,0 +1,62 @@
+<div class="sidebar">
+	<nav class="sidebar-nav">
+		<div class="text-center">
+			<br/>
+			<br/>
+			<a href="/home" tyle="color:#FFFFFF;">
+				BOA SAUDE MEDICINA
+			</a>
+		</div>
+		<ul class="nav" sec:authorize="hasAuthority('ASSOCIADO')">
+			<li class="nav-title">Associado</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/dependentes"> 
+					<i class="nav-icon fa fa-users"></i> Dependentes
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/extrato"> 
+					<i class="nav-icon fa fa-users"></i> Extrato Pagamento
+				</a>
+			</li>
+		</ul>
+		<ul class="nav" sec:authorize="hasAuthority('PRESTADOR')">
+			<li class="nav-title">Prestador</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/metas"> 
+					<i class="nav-icon fa fa-rocket"></i> Metas
+				</a>
+			</li>
+		</ul>
+		
+		<ul class="nav" sec:authorize="hasAuthority('CONVENIADO')">
+			<li class="nav-title">Conveniado</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/prestadores"> 
+					<i class="nav-icon fa fa-users"></i> Prestadores
+				</a>
+			</li>
+		</ul>
+		
+		<ul class="nav" sec:authorize="hasAuthority('ADMINISTRADOR')" >
+			<li class="nav-title">Administrativo</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/conveniados"> 
+					<i class="nav-icon fa fa-users"></i> Conveniados
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/prestadores"> 
+					<i class="nav-icon fa fa-users"></i> Prestadores
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/associados"> 
+					<i class="nav-icon fa fa-users"></i> Associados
+				</a>
+			</li>	
+		</ul>
+	</nav>
+	<!-- <button class="sidebar-minimizer brand-minimizer" type="button"></button>-->
+</div>
+

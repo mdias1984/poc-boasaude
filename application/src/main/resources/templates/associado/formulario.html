@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<div class="modal fade modal-child" id="modalUsuario" tabindex="-1"
+	role="dialog" aria-hidden="true">
+	<div class="modal-dialog  modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header ninho-theme">
+				<i class="fa fa fa-users"></i> <span>ASSOCIADO</span>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="alert alert-danger" id="alertCallBack"
+					style="display: none;" role="alert">
+					<strong>Erro!</strong> <span></span>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<form id="formUsuario" data-toggle="validator" role="form"
+							method="POST" action="/usuario/salvar">
+							<input type="hidden" class="" name="id" /> <input type="hidden"
+								class="" name="acao" />
+
+							<ul class="nav nav-tabs" role="tablist">
+								<li class="nav-item"><a class="nav-link active"
+									data-toggle="tab" href="#userConfig" role="tab"
+									aria-controls="home"> <i class="fas fa-user-circle"></i>
+										Dados do Usuário
+								</a></li>
+							</ul>
+
+							<div class="tab-content">
+								<div class="tab-pane active" id="userConfig" role="tabpanel">
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control " type="text" name="nome"
+											placeholder="Nome">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-4" type="text" name="cpf"
+											placeholder="CPF">
+									</div>
+									<div class="input-group mb-3">
+
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-4" type="text" name="RG"
+											placeholder="RG">
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-4" type="text" name="dataNascimento"
+											placeholder="Data de Nascimento">
+									</div>
+									<div class="input-group mb-3">
+							             <div class="input-group-prepend">
+							               <span class="input-group-text">
+							                 <i class="icon-user"></i>
+							               </span>
+							             </div>
+											<select class="form-control col-lg-4" name="perfil" id="perfil">
+												<option value="1">ASSOCIADO</option>
+											</select>  
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<select class="form-control col-lg-2" id="sexo" name="sexo">
+											<option value="0" selected="selected">Sexo</option>
+											<option value="1">FEMININO</option>
+											<option value="2">MASCULINO</option>
+											<option value="3">OUTROS</option>
+										</select>
+									</div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text">@</span>
+										</div>
+										<input class="form-control" type="text" name="email"
+											placeholder="Email">
+									</div>
+									
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control" type="text"
+											name="logradouro" placeholder="Logradouro">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-2" type="text" name="cep"
+											placeholder="CEP">
+									</div>
+
+						
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-2" type="text" name="numero"
+											placeholder="Numero">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-6" type="text" name="bairro"
+											placeholder="Bairro">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-6" type="text" name="cidade"
+											placeholder="Cidade">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<input class="form-control col-lg-2" type="text" name="uf"
+											placeholder="UF">
+									</div>
+
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"> <i class="icon-user"></i>
+											</span>
+										</div>
+										<select class="form-control col-lg-6" id="estadoCivil"
+											name="estadoCivil">
+											<option value="0" selected="selected">Estado Civil</option>
+											<option value="1">CASADO(A)</option>
+											<option value="2">SOLTEIRO(A)</option>
+											<option value="3">OUTROS</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary btn-sm"
+					data-dismiss="modal" id="cancelarUsuario">CANCELAR</button>
+				<button type="button" class="btn btn-primary btn-sm"
+					id="salvarUsuario">SALVAR</button>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

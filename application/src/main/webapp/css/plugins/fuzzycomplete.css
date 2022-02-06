@@ -1,0 +1,20 @@
+.fuzzyResults {
+  position:relative;
+  top: 0px !important;
+  display: none;
+  border: 1px solid #ccc;
+  background: #FFF;
+}
+
+.__autoitem {
+  cursor: pointer;
+  color: #5c6873;
+  padding: 2px;
+  font-size: 10px;
+  width: 368px;
+  border-right: solid 1px #CCC;
+}   
+
+.__autoitem.selected {
+  background: #89f;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>  
+
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+   
+    <div class="app-body">
+
+	  <!-- Side Bar -->
+	  <th:block th:include="/includes/_sidebar"></th:block>
+	        
+      <main class="main">
+      
+        <!-- Include Header -->
+    	<th:block th:include="/dashboard/_header"></th:block> 
+
+        <div class="container-fluid">
+          <div class="animated fadeIn">
+          	<div class="row">
+				<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-digitadas"></th:block> 
+	       		</div>
+	       		<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-pagas"></th:block> 
+				</div>
+				<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-canceladas"></th:block> 
+	          	</div>
+	          	<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/card-meta-unidade"></th:block> 
+	          	</div>
+          	</div>
+          	<div class="row">
+				<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/propostas-pendentes"></th:block> 
+	       		</div>
+	       		<div class="col-sm-6 col-lg-3">
+	       			<th:block th:include="/dashboard/card-meta-diaria"></th:block> 
+				</div>
+				<div class="col-sm-6 col-lg-6">
+				  <th:block th:include="/dashboard/meta-unidade"></th:block>
+	          	</div>
+          	</div>
+			<div class="row">
+				<div class="card-columns cols-2">
+    	          <th:block th:include="/dashboard/producao-meta"></th:block> 
+				  <th:block th:include="/dashboard/produtos-vendidos"></th:block>
+	            </div>
+    		</div>
+          </div>
+        </div>
+      </main>
+    </div>
+ 
+   	<th:block th:include="/includes/_footer"></th:block>
+   	
+   	<script>
+   		$(document).ready(function(){
+   			var inicio 	= $('#dashboardDatInicial').val();
+   			var fim 	= $('#dashboardDatFinal').val();
+   			var unidade	= $('#dashboardUnidade option:selected').val();
+   			
+   			_dashboard.propostasDigitadas(unidade, inicio, fim);
+	    	_dashboard.propostasPagas(unidade, inicio, fim);
+   			_dashboard.propostasCanceladas(unidade, inicio, fim);
+   			_dashboard.propostasPendentes(unidade, inicio, fim);
+            _dashboard.valorMetaUnidade(unidade, inicio, fim);
+            _dashboard.valorMetaDiaria(unidade, inicio, fim);
+            _dashboard.AcompanhamentoMetasUnidade(unidade, inicio, fim);
+   			_dashboard.produtosVendidos(unidade, inicio, fim);
+            _dashboard.producaoMeta(unidade, inicio, fim);
+            
+            $('.btn-dashboard').click(function(){
+            	inicio 	= $('#dashboardDatInicial').val();
+       			fim 	= $('#dashboardDatFinal').val();
+       			unidade	= $('#dashboardUnidade option:selected').val();
+       			
+			     $.preloader.start({
+		             modal: true,
+		             src : 'sprites2.png'
+		         });
+			     
+			    setTimeout(function(){
+			    	_dashboard.propostasDigitadas(unidade, inicio, fim);
+			    	_dashboard.propostasPagas(unidade, inicio, fim);
+		   			_dashboard.propostasCanceladas(unidade, inicio, fim);
+		   			_dashboard.propostasPendentes(unidade, inicio, fim);
+		            _dashboard.valorMetaUnidade(unidade, inicio, fim);
+		            _dashboard.valorMetaDiaria(unidade, inicio, fim);
+		            _dashboard.AcompanhamentoMetasUnidade(unidade, inicio, fim);
+		        	_dashboard.produtosVendidos(unidade, inicio, fim);
+		            _dashboard.producaoMeta(unidade, inicio, fim);
+		   			
+		   			$.preloader.stop();
+		    	 }, 1000);
+			});
+            
+            
+
+   		});
+   	</script>
+   	
+  </body>
+</html>

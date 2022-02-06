@@ -1,0 +1,18 @@
+<div class="card text-white bg-success">
+	<div class="card-body pb-0">
+		<div class="btn-group float-right" sec:authorize="hasRole('FRANQUEADO') or hasRole('CONSULTOR')">
+            <div class="dropdown-menu dropdown-menu-right">
+ 				<a class="dropdown-item" th:text="TODAS" th:onclick="'_dashboard.propostasRecusadas(\'' + ${usuario.id} + '\', null, null);'"></a>
+              
+              	<a class="dropdown-item" th:each="unidade : ${unidades}" th:text="${unidade.nome}" 
+              		th:onclick="'_dashboard.propostasRecusadas(\'' + ${usuario.id} + '\', \'' + ${unidade.id} + '\', \'' + ${unidade.nome} + '\');'">
+              	</a>
+            </div>
+		</div>
+		<div id="cardMetaUnidade" class="text-value"></div>
+		<div>Valor de Meta da Unidade</div>
+		<div id="cmNomeUnidade"></div>
+	</div>
+	<div class="chart-wrapper mt-3 mx-3" style="height: 70px;">
+	</div>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>  
+
+  <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+   
+    <div class="app-body">
+
+	  <!-- Side Bar -->
+	  <th:block th:include="/includes/_sidebar"></th:block>
+	        
+      <main class="main">
+      TESTE
+        <!-- Header -->
+    	<th:block th:include="/dashboard/_header"></th:block> 
+
+        <div class="container-fluid">
+	    	<div class="row">
+			</div>
+          </div>
+      </main>
+    </div>
+ 
+   	<th:block th:include="/includes/_footer"></th:block>
+   	
+   	<script>
+   		$(document).ready(function(){
+   			var usuario = $("#user").val();
+			var inicio 	= $('#dashboardDatInicial').val();
+			var fim 	= $('#dashboardDatFinal').val();
+			var unidade	= $('#dashboardUnidade option:selected').val();
+
+		    
+   		});
+   	</script>
+   	
+  </body>
+</html>

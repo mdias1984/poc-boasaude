@@ -1,0 +1,42 @@
+ <div class="app-header navbar">
+	<button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
+        <span class="navbar-toggler-icon"></span>
+	</button>
+	
+	<input type="hidden" id="removeDocumento" value="true" sec:authorize="hasRole('ADMINISTRADOR') or hasRole('FINANCEIRO')"/>
+	<input type="hidden" id="gerenciaMeta" value="true" sec:authorize="hasRole('ADMINISTRADOR') or hasRole('FRANQUEADO') or hasRole('FINANCEIRO')"/>
+	<input type="hidden" id="user" th:value="${usuario.id}"/>
+	<input type="hidden" id="perfilVendedor" sec:authorize="hasRole('VENDEDOR')"/>
+	
+   	<ul class="nav navbar-nav ml-auto">
+   	    <li class="nav-item d-md-down-none">
+          <a class="nav-link" href="/notificacoes">
+            <i class="icon-bell"></i>
+            <span class="badge badge-pill badge-danger"></span>
+          </a>
+        </li>
+        <li class="nav-item d-md-down-none">
+    		<a class="nav-link" href="/agenda">
+              	<i class="far fa-calendar-alt"></i>
+            </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+			<img src="/img/icon-user-default.png" class="img-avatar"/>
+			<span th:text="${usuario.nome}"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="/usuario/perfil">
+              	<i class="fa fa-user"></i> Perfil
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout">
+              <i class="fa fa-lock"></i> Logout</a>
+          </div>
+        </li>
+	</ul>
+ </div>
+ 
+ <th:block th:include="/includes/_modal_evento"></th:block>  
+ 
+ 

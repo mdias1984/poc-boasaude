@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<!-- Include HEAD -->
+<th:block th:include="/includes/_head"></th:block>
+
+<body
+	class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
+
+	<div class="app-body">
+
+		<!-- Side Bar -->
+		<th:block th:include="/includes/_sidebar"></th:block>
+
+		<main class="main">
+
+			<!-- Include Header -->
+			<th:block th:include="/dashboard/_header"></th:block>
+
+			<div class="container-fluid">
+
+				<div class="animated fadeIn">
+					<div class="row">
+						<div class="col-sm-6 col-lg-3">
+							<th:block th:include="/dashboard/propostas-digitadas"></th:block>
+						</div>
+						<div class="col-sm-6 col-lg-3">
+							<th:block th:include="/dashboard/propostas-portabilidade"></th:block>
+						</div>
+						<div class="col-sm-6 col-lg-3">
+							<th:block th:include="/dashboard/propostas-recusadas"></th:block>
+						</div>
+					</div>
+					<div class="row">
+						<div class="card-columns cols-2">
+							<th:block th:include="/dashboard/metas-franqueado.html"></th:block>
+							<th:block th:include="/dashboard/propostas-vendedor"></th:block>
+							<th:block th:include="/dashboard/notificacoes"></th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+
+	<th:block th:include="/includes/_footer"></th:block>
+
+	<script>
+		$(document).ready(function() {
+
+			var inicio = $('#dashboardDatInicial').val();
+			var fim = $('#dashboardDatFinal').val();
+			var unidade = $('#dashboardUnidade option:selected').val();
+			var usuario = $('#user').val();
+
+			_dashboard.propostasDigitadas(unidade, null, null);
+			_dashboard.propostasRecusadas(unidade, null, null);
+			_dashboard.propostasPortabilidade(unidade, null, null);
+			_dashboard.propostasVendedor(usuario, null, null);
+			_dashboard.notificacoes();
+			_dashboard.metasUsuarios(unidade, null, null);
+
+			$('.progress-value > span').each(function() {
+				$(this).prop('Counter', 0).animate({
+					Counter : $(this).text()
+				}, {
+					duration : 2000,
+					easing : 'swing',
+					step : function(now) {
+						$(this).text(Math.ceil(now));
+					}
+				});
+			});
+
+			$('.btn-dashboard').click(function() {
+				usuario = $("#user").val();
+				inicio = $('#dashboardDatInicial').val();
+				fim = $('#dashboardDatFinal').val();
+				unidade = $('#dashboardUnidade option:selected').val();
+
+				$.preloader.start({
+					modal : true,
+					src : 'sprites2.png'
+				});
+
+				setTimeout(function() {
+					_dashboard.propostasDigitadas(unidade, inicio, fim);
+					_dashboard.propostasPortabilidade(unidade, inicio, fim);
+					_dashboard.propostasRecusadas(unidade, inicio, fim);
+					_dashboard.propostasVendedor(usuario, inicio, fim);
+					_dashboard.notificacoes();
+					_dashboard.metasUsuarios(unidade, inicio, fim);
+
+					$.preloader.stop();
+				}, 1000);
+			});
+		});
+	</script>
+</body>
+</html>
